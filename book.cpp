@@ -528,7 +528,7 @@ void check_book_supplier(string checkSupplier) {
 	
 		while (res->next())
 		{
-				cout << "supplier: " << i << endl << "supplier id: " << res->getString("supplier_id") << endl << "supplier name: " << res->getString("supplier_name") << endl << "supplier mobile: " << res->getInt("supplier_phone") << endl << "supplier email: " << res->getString("supplier_email") << endl << endl;
+				cout << "supplier: " << i << endl << "supplier id: " << res->getString("supplier_id") << endl << "supplier name: " << res->getString("supplier_name") << endl << "supplier mobile: " << res->getString("supplier_phone") << endl << "supplier email: " << res->getString("supplier_email") << endl << endl;
 				i++;
 				j++;
 		}
@@ -600,7 +600,7 @@ void check_book_supplier_author(string checkSupplier) {
 
 	while (res->next())
 	{
-		cout << "supplier: " << i << endl << "supplier id: " << res->getString("supplier_id") << endl << "supplier name: " << res->getString("supplier_name") << endl << "supplier mobile: " << res->getInt("supplier_phone") << endl << "supplier email: " << res->getString("supplier_email") << endl << endl;
+		cout << "supplier: " << i << endl << "supplier id: " << res->getString("supplier_id") << endl << "supplier name: " << res->getString("supplier_name") << endl << "supplier mobile: " << res->getString("supplier_phone") << endl << "supplier email: " << res->getString("supplier_email") << endl << endl;
 		i++;
 		j++;
 	}
@@ -674,7 +674,7 @@ void check_book_supplier_author_book(string checkSupplier, string author_name) {
 
 	while (res->next())
 	{
-		cout << "supplier: " << i << endl << "supplier id: " << res->getString("supplier_id") << endl << "supplier name: " << res->getString("supplier_name") << endl << "supplier mobile: " << res->getInt("supplier_phone") << endl << "supplier email: " << res->getString("supplier_email") << endl << endl;
+		cout << "supplier: " << i << endl << "supplier id: " << res->getString("supplier_id") << endl << "supplier name: " << res->getString("supplier_name") << endl << "supplier mobile: " << res->getString("supplier_phone") << endl << "supplier email: " << res->getString("supplier_email") << endl << endl;
 		i++;
 		j++;
 	}
