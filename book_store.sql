@@ -1,3 +1,7 @@
+/*Guy Golpur 308353523
+Bar Azouri 205785124*/
+
+
 create database if not exists book_store;
 use book_store;
 
@@ -66,84 +70,6 @@ create table if not exists purchase_record(
     record_date date,
     purchase_from enum('shop','ordered')
 );
-
-
-
-
-/**/
-SELECT book.book_name = 'arthur', supplier.supplier_id, supplier.supplier_name, supplier.supplier_phone, supplier.supplier_email  FROM book LEFT JOIN supplier ON book.supplier_id = supplier.supplier_id ORDER BY book.book_name;
-
-/*7 book and author*/
-SELECT * FROM book WHERE book_name = 'arthur' AND book_stock = '1' AND book_author = 'chris';
-
-
-/*8*/
-select book.supplier_id, supplier.supplier_id, supplier.supplier_name, supplier.supplier_phone, supplier.supplier_email from book inner JOIN  supplier on book.supplier_id = supplier.supplier_id  where book_name='arthur' ;
-
-
-/*13*/
-SELECT * FROM purchase_record WHERE saller_name = ? and record_date between ? and ? LIMIT 5  OFFSET ? ;
-select book.id, purchase_record.record_date from book inner JOIN  purchase_record on id = book_id  where book_name= ?  and purchase_record.record_date >= ?;
-SELECT * FROM costumer WHERE join_date >= ? LIMIT 5  OFFSET ? ;
-/**/
-SELECT * FROM purchase WHERE purchase_date between '1992-01-01' and '2030-01-01' ;
-
-
-/*14*/
-SELECT * FROM purchase_record WHERE record_date between '1992-01-01' and '2030-01-01' and purchase_from = 'ordered';
-
-
-/*15*/
-SELECT sum(price - amount_to_pay ) as total from purchase_record where purchase_record.record_date >= '1992-01-01' and purchase_record.user_id = '01';
-
-/*bar*/
-select purchase_record.amount_to_pay,purchase_record.price,purchase_record.record_date, cos.user_name from purchase_record inner join (select * from costumer WHERE user_name = 'bar') cos on purchase_record.user_id = cos.user_id;
-
-/*work*/
-SELECT x.user_id, x.user_name,sum(price - amount_to_pay ) as total from (select purchase_record.user_id, purchase_record.amount_to_pay,purchase_record.price,purchase_record.record_date, cos.user_name from purchase_record inner join (select * from costumer WHERE user_name = 'bar') cos on purchase_record.user_id = cos.user_id) x where x.record_date >= '1992-01-01' and x.user_name = 'bar';
-
-/*18*/
-/*first*/
-SELECT book_id, SUM(amount_to_pay) as total from purchase_record where book_id = '6' and purchase_record.record_date between '1992-01-01' and '2030-01-01';
-
-/*second*/
-select purchase_record.book_id, cos.supplier_id from purchase_record inner join (select * from book WHERE supplier_id = '002') cos on purchase_record.book_id = cos.id;
-select purchase_record.book_id, cos.supplier_id from purchase_record inner join (select * from book WHERE id = '6') cos on purchase_record.book_id = cos.id;
-
-/*----*/
-SELECT amount_to_pay, book_id, record_date, book.supplier_id from purchase_record INNER JOIN book on purchase_record.book_id = book.id;
-/*------------*/
-
-SELECT x.supplier_id, x.amount_to_pay , sum(amount_to_pay) as total from (SELECT amount_to_pay, book_id, record_date, book.supplier_id from purchase_record INNER JOIN book on purchase_record.book_id = book.id ) x where x.supplier_id = '005';
-/*upload*/
-SELECT x.supplier_id, x.amount_to_pay , sum(amount_to_pay) as total from (SELECT amount_to_pay, book_id, record_date, book.supplier_id from purchase_record INNER JOIN book on purchase_record.book_id = book.id ) x where x.supplier_id = '005' and x.record_date between '1992-01-01' and '2030-01-01';
-
-
-/*combine*/
-SELECT x.book_id, x.record_date, book_id, SUM(amount_to_pay) as total from (select purchase_record.amount_to_pay, purchase_record.record_date, purchase_record.book_id, cos.supplier_id from purchase_record inner join (select * from book WHERE supplier_id = '002') cos on purchase_record.book_id = cos.id) x where x.book_id = '6' and x.record_date between '1992-01-01' and '2030-01-01';
-
-
-/*19*/
-SELECT * FROM purchase_record WHERE saller_name = 'avi' and record_date between '1992-01-01' and '2019-01-01' ;
-
-/*11*/
-SELECT * FROM purchase_record WHERE saller_name = ? and record_date between ? and ? LIMIT 5  OFFSET ? ;
-
-SELECT * FROM purchase_record WHERE record_date >= '1992-01-01';
-/**/
-SELECT user_id, COUNT(*) AS magnitude 
-FROM purchase_record WHERE record_date >= '2015-03-03'
-GROUP BY user_id 
-ORDER BY magnitude DESC
-LIMIT 1
-;
-
-select purchase_record.user_id, COUNT(*) AS magnitude , costumer.user_name, costumer.user_mobile, costumer.user_email, costumer.user_address, costumer.join_date from purchase_record inner JOIN  costumer WHERE record_date >= '1990-03-03'  
-limit 1;
-
-select * from purchase_record inner join (select user_id ,  count(user_id) c from purchase_record where purchase_record.record_date >= '1990-03-03'  group by user_id   order by c  desc limit 1) multi_purchase on costumer.user_id=multi_purchase.user_id  limit 1;
-
-select * from costumer inner join (select user_id ,  count(user_id) c from purchase_record where purchase_record.record_date >= '1990-03-03'  group by user_id   order by c  desc limit 1) multi_purchase on costumer.user_id=multi_purchase.user_id  limit 1;
 
 
 
