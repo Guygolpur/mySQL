@@ -1,4 +1,5 @@
-/*Guy*/
+/*Guy Golpur 308353523
+Bar Azouri 205785124*/
 
 #ifndef _DB_H
 #define _DB_H

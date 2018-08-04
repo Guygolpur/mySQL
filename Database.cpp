@@ -1,4 +1,5 @@
-/*Guy Golpur*/
+/*Guy Golpur 308353523
+Bar Azouri 205785124*/
 
 #include "Database.h"
 
